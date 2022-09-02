@@ -46,6 +46,7 @@ async function printOnePost(id){
     `
 }
 
+
 printOnePost(myId);
 
 

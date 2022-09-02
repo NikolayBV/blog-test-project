@@ -74,6 +74,34 @@ body {
     border: none;
     background-color: rgb(247, 243, 226);
 }
+.postEdit{
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 25px;
+    margin-bottom: 100px;
+    flex: 1 1 auto;
+}
+.titleEdit{
+    width: 25rem;
+    height: 5rem;
+    text-align: center;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+}
+
+.textEdit{
+    width: 25rem;
+    height: 15rem;
+    text-align: center;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+}
+.editHeading{
+    font-weight: 400;
+}
 .footer{
     background-color:bisque;
     display: flex;

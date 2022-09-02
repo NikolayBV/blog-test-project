@@ -18,10 +18,11 @@ function renderPost(posts, users, start = 0, end = 2){
                 <p class="postAuthor">${users.find((user) => 
                     user.id === posts[key].id).name
                 }</p>
+                <button class="btnEdit" href="file:///Users/admin/Desktop/VSCode/my%20blog/html/editPost.html">Edit</button>
             </div>
         `
     }
-
+    editPage()
 }
 
 function renderMyPost(posts, users, start=0, end){
@@ -32,11 +33,13 @@ function renderMyPost(posts, users, start=0, end){
             <h3 class="postHeading">Title: ${posts[i].title}</h3>
             <p class="postText">Post: ${`${posts[i].body.slice(0,20)}...`}</p>
             <p class="postAuthor">${users[i].name}</p>
+            <button class="btnEdit" href="file:///Users/admin/Desktop/VSCode/my%20blog/html/editPost.html">Edit</button>
         </div>
         `   
         usersId.push(users[i].id)
         
     }
+    editPage()
 }
 
 function requestFetch(url){
@@ -73,6 +76,14 @@ function showPost(){
         })
     }
 }
+function editPage(){
+    let btnEdit = document.querySelectorAll('.btnEdit');
+    for(let i = 0; i < btnEdit.length; i++){
+        btnEdit[i].addEventListener('click', () => {
+            window.location.href = 'file:///Users/admin/Desktop/VSCode/my%20blog/html/editPost.html';
+        })
+    }
+}
 
 
 Promise.all([
@@ -87,6 +98,7 @@ Promise.all([
 ])
 .then((res) => {
     renderPost(res[0], res[1]);
+    editPage();
     hideText(res[0]);
 }).then(() => {
     showPost()
@@ -171,7 +183,7 @@ async function pagination(){
 }
 
 
-    
+
 
 
 
