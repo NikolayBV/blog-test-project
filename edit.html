@@ -24,13 +24,17 @@
         </div>
         <div class="postEdit">
             <h3 class="editHeading">Edit title</h3>
-            <input type="text" class="titleEdit">
+            <textarea action="" class="titleEdit"></textarea>
             <h3 class="editHeading">Edit text</h3>
-            <textarea action="" class="textEdit"></textarea>
+            <textarea action="" class="textEdit" minlength="20" maxlength="200"></textarea>
+            <button type="submit" class="btnSave">Save</button>
         </div>
         <div class="footer">
             <p class="author">Author</p>
         </div>
     </div>
+    <script type="module" src="/js/library.js" ></script>
+    <script type="module" src="/js/edit.js"></script>
+    <script type="module" src="js/event.js" ></script>
 </body>
 </html>

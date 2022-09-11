@@ -8,7 +8,7 @@ function getId(){
     let url = window.location.href;
     let myUrl = new URL(url);
     let id = myUrl.searchParams.get('id')
-    return parseInt(id) + 1;
+    return parseInt(id);
 }
 
 (async () => {
