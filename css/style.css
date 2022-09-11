@@ -44,6 +44,7 @@ body {
     flex: 1 1 auto;
     width: 80%;
     margin: auto;
+    margin-top: 20px;
 }
 
 .postAuthor{
@@ -51,10 +52,22 @@ body {
     display: flex;
     justify-content: flex-end;
 }
-.btnBox{
+.btnPagesBox{
     display: flex;
     margin-bottom: 70%;
     justify-content: center;
+}
+.selectBox{
+    display: flex;
+    justify-content: center;
+}
+.selectList{
+    display: flex;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    margin-bottom: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
 .btnBack{
     width: 25%;
@@ -64,16 +77,83 @@ body {
     font-weight: bold;
 }
 .btnPagesAll{
+    flex: 1 1 auto;
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    justify-content: space-evenly;
+    margin-top: 20px;
     
 }
-.btnPage{
-    margin: 5px;
-    border: none;
-    background-color: rgb(247, 243, 226);
+.btnActive{
+    font-size: 1.5rem !important;
 }
+.btnPage1{
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    margin-bottom: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+.btnPage2{
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    margin-bottom: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+.btnPage3{
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    margin-bottom: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+.btnPage4{
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    margin-bottom: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+.btnPage5{
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    margin-bottom: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+.btnPage6{
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    margin-bottom: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+
+
 .postEdit{
     display: grid;
     justify-content: center;
@@ -89,6 +169,10 @@ body {
     border: none;
     border-radius: 25px;
     background-color: bisque;
+    font-size: 1.15rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+    padding: 16px;
+    box-sizing: border-box;
 }
 
 .textEdit{
@@ -98,13 +182,49 @@ body {
     border: none;
     border-radius: 25px;
     background-color: bisque;
+    font-size: 1.15rem;
+    padding: 16px;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+.btnDelete{
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    margin-bottom: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+.btnEdit{
+    width: 8rem;
+    height: 2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    margin-bottom: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
 .editHeading{
     font-weight: 400;
+}
+.btnSave{
+    margin-top: 20px;
+    width: 8rem;
+    height: 2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
 .footer{
     background-color:bisque;
     display: flex;
     justify-content: center;
-    
 }
