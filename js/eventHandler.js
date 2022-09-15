@@ -3,9 +3,10 @@ import {parseRecievedPosts, parseRecievedUsers,postsAndUsersLength} from './api.
 
 
 
-export function firstLoadPage(url){
+export function firstLoadPage(url, btn){
     window.onload = () => {
         window.history.pushState({}, null, `${url}/?page=1&amount=10`);
+        btn.classList.add('btnActive');
     }
 }
 
@@ -17,15 +18,21 @@ export function setUrlParamForPage(url, page = 1, amount = 10){
 export function setMaxLengthForBtn(btn){
     postsAndUsersLength()
     .then(([posts, users]) => {
-        btn.innerHTML = posts.length;
+        btn.innerHTML = posts.length/users.length;
     })
 }
 
 export function removeClassActive(btn){
-    btn.forEach((item) => item.classList.remove(''))
+    btn.forEach((item) => item.classList.remove('btnActive'))
 }
 
-
+export function addClassActiveOnClick(btn, count,activeClass){
+    btn.forEach((item) => {
+        if(item.innerHTML === String(count)){
+            item.classList.add(activeClass)
+        }
+    })
+}
 
 
 
