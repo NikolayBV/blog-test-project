@@ -1,5 +1,5 @@
 import {updatePost, getPost} from './api.js';
-import {setPostsToLocalStorage, showPostForEdit, getPostsFromLocalStorage} from './library.js';
+import {setPostsToLocalStorage, showPostForEdit, getPostsFromLocalStorage} from './checkFunction.js';
 // todo: 
 (async function main(){
     const response = await getPost();

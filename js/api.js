@@ -1,10 +1,10 @@
-import {setPostsToLocalStorage} from './library.js';
+import {setPostsToLocalStorage} from './checkFunction.js';
 
 
 const baseUrl = 'https://jsonplaceholder.typicode.com';
 
 export function requestForPosts(page, amount){
-    return fetch(`${baseUrl}/posts?_page=${page}&_amount=${amount}`);
+    return fetch(`${baseUrl}/posts?_page=${page}&_limit=${amount}`);
 }
 
 export function requestForAllPosts(){
@@ -80,7 +80,17 @@ export async function postsAndUsersLength(){
 
 
 
-
+export async function updatePost(id, title, body){
+    const response = await fetch(`${baseUrl}/posts/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({id, title, body}),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+    const result = response.status;
+    return result;
+}
 
 
 
@@ -109,16 +119,16 @@ export function getPost(id){
 }
 
 // todo: SOLID!!! Чистые функции!!!
-export function updatePost(id, userId, title, body){
-    return fetch(`${baseUrl}/posts/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ id,title, body, userId }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-    });
-      // todo: в обработчике события проверить статус код, если успешно, то 59 если нет, то console.warn() ошибку 
-}
+// export function updatePost(id, userId, title, body){
+//     return fetch(`${baseUrl}/posts/${id}`, {
+//         method: 'PUT',
+//         body: JSON.stringify({ id,title, body, userId }),
+//         headers: {
+//           'Content-type': 'application/json; charset=UTF-8',
+//         },
+//     });
+//       // todo: в обработчике события проверить статус код, если успешно, то 59 если нет, то console.warn() ошибку 
+// }
 
 // todo: почитать нэйминг
 export function deletePost(id){

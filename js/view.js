@@ -1,5 +1,5 @@
 import {getUsers, getPost} from './api.js';
-import {createPost} from './library.js';
+import {createPost} from './checkFunction.js';
 //import {renderPost} from './index.js'
 
 Promise.all([
