@@ -6,7 +6,6 @@ import {checkUrl} from './checkFunction.js';
 import {setUrlParamForPage, setMaxLengthForBtn} from './setFunction.js';
 
 const mainPageUrl = 'http://127.0.0.1:5500';
-
 let select = document.querySelector('.selectList');
 let btnPage6 = document.querySelector('.btnPage6');
 let btnPage2 = document.querySelector('.btnPage2');

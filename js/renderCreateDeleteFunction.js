@@ -131,11 +131,6 @@ export function createPostEditForm(post){
 }
 
 
-function deletePostFromLocalStoradge(id){
-
-}
-
-
 
 
 

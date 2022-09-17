@@ -92,18 +92,3 @@ export async function setPostsToLocalStorage(id){
     localStorage.setItem(`obj${id}`, JSON.stringify(obj));
 }
 
-function getUsersFromLocalStorage(){
-
-}
-
-function setUsersToLoaclStorage(){
-
-}
-
-// function renderPostView(){
-
-// }
-
-// function renderPostEdit(){
-
-// }
