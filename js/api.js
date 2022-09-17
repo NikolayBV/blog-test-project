@@ -58,7 +58,48 @@ export async function parseRecievedPostsAndUsers(page,amount){
 
 export async function parseRecievedPostAndUser(id){
     let post = await parseRecievedPost(id);
-    let user = await parseRecievedUser(id);
+    let user;
+    if(id <=10){
+        id = 1;
+        user = await parseRecievedUser(id);
+    }
+    else if(id <=20){
+        id = 2;
+        user = await parseRecievedUser(id);
+    }
+    else if(id <=30){
+        id = 3;
+        user = await parseRecievedUser(id);
+    }
+    else if(id <=40){
+        id = 4;
+        user = await parseRecievedUser(id);
+    }
+    else if(id <=50){
+        id = 5;
+        user = await parseRecievedUser(id);
+    }
+    else if(id <=60){
+        id = 6;
+        user = await parseRecievedUser(id);
+    }
+    else if(id <=70){
+        id = 7;
+        user = await parseRecievedUser(id);
+    }
+    else if(id <=80){
+        id = 8;
+        user = await parseRecievedUser(id);
+    }
+    else if(id <=90){
+        id = 9;
+        user = await parseRecievedUser(id);
+    }
+    else if(id <=100){
+        id = 10;
+        user = await parseRecievedUser(id);
+    }
+    
     return [post, user];
 }
 
@@ -88,10 +129,27 @@ export async function updatePost(id, title, body){
           'Content-type': 'application/json; charset=UTF-8',
         },
       });
-    const result = response.status;
-    return result;
+    return response.status;
 }
 
+export async function deletePost(id){
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    method: 'DELETE',
+    });
+    return response.status;
+}
+
+export async function createPost(id, title, body){
+    const response = await fetch(`${baseUrl}/posts`, {
+        method: 'POST',
+        body: JSON.stringify({ id, title, body}),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+
+    return response.status;
+}
 
 
 
@@ -131,7 +189,7 @@ export function getPost(id){
 // }
 
 // todo: почитать нэйминг
-export function deletePost(id){
+export function deleteSODOSPost(id){
     // todo: удалить ненужные события 
     let btnDelete = document.querySelector('.btnDelete');
     // todo: в API только работа с сервером

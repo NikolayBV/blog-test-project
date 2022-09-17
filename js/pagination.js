@@ -1,5 +1,5 @@
 import {getParamFromUrl} from './getFunction.js';
-import {renderPosts} from './renderAndCreateFunction.js';
+import {renderPosts} from './renderCreateDeleteFunction.js';
 import {setUrlParamForPage} from './setFunction.js';
 
 const mainPageUrl = 'http://127.0.0.1:5500';

@@ -1,5 +1,5 @@
 import {getIdFromHash, getParamFromUrl} from './getFunction.js';
-import {renderPosts} from './renderAndCreateFunction.js';
+import {renderPosts} from './renderCreateDeleteFunction.js';
 import {firstLoadPage} from './eventHandler.js';
 import {pagination} from './pagination.js';
 import {checkUrl} from './checkFunction.js';
@@ -11,9 +11,13 @@ let select = document.querySelector('.selectList');
 let btnPage6 = document.querySelector('.btnPage6');
 let btnPage2 = document.querySelector('.btnPage2');
 
+if(!getParamFromUrl()[0] &&!getParamFromUrl()[1] && !window.location.hash){
+    firstLoadPage(mainPageUrl, btnPage2);
+}
+
 setMaxLengthForBtn(btnPage6);
-firstLoadPage(mainPageUrl, btnPage2);
-renderPosts();
+
+renderPosts(getParamFromUrl()[0], getParamFromUrl()[1]);
 
 select.addEventListener('change', () => {
     if(select.value === 'five'){

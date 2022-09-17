@@ -1,5 +1,5 @@
 //import {setCountOfPost} from './setFunction.js';
-import {renderPosts, renderCreatePostForm, renderEditPostForm, renderPostView} from './renderAndCreateFunction.js';
+import {renderPosts, renderCreatePostForm, renderEditPostForm, renderPostView} from './renderCreateDeleteFunction.js';
 import {getParamFromUrl, getPostsFromLocalStorage} from './getFunction.js';
 import {setValueToLocalStorage} from './setFunction.js';
 
@@ -58,6 +58,17 @@ export function checkOnePostInLocalStorage(post){
         if(String(post.id) === obj.id){
             post.title = obj.title;
             post.body = obj.body;
+        }
+    }
+}
+
+export function checkOnePostInLocalStorageForDelete(post){
+    for(let i=0; i<localStorage.length; i++) {
+        let key = localStorage.key((i));
+        let value = localStorage.getItem(key);
+        let obj = JSON.parse(value);
+        if(String(post.id) === obj.id){
+            localStorage.removeItem(key);
         }
     }
 }

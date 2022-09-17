@@ -1,7 +1,7 @@
-import {parseRecievedPostsAndUsers, parseRecievedPostAndUser, parseRecievedPost, updatePost} from './api.js';
+import {parseRecievedPostsAndUsers, parseRecievedPostAndUser, parseRecievedPost, updatePost, deletePost, createPost} from './api.js';
 import {getIdFromHash, getValueFromPost} from './getFunction.js';
 import {setValueToLocalStorage} from './setFunction.js';
-import {checkPostsInLocalStorage, checkOnePostInLocalStorage} from './checkFunction.js';
+import {checkPostsInLocalStorage, checkOnePostInLocalStorage, checkOnePostInLocalStorageForDelete} from './checkFunction.js';
 
 export function renderPosts(page = 1, amount = 10){
     parseRecievedPostsAndUsers(page, amount)
@@ -23,24 +23,54 @@ export function renderEditPostForm(){
     let body = document.querySelector('.bodyPost');
     parseRecievedPost(getIdFromHash())
     .then((post) => {
+        checkOnePostInLocalStorage(post);
         createPostEditForm(post);
         let btnSave = document.querySelector('.btnSave');
-            btnSave.addEventListener('click', () => {
-                setValueToLocalStorage(getValueFromPost()[0], getValueFromPost()[1], getIdFromHash());
-                updatePost(getIdFromHash(), getValueFromPost()[0], getValueFromPost()[1])
-                .then((res) => {
-                    if(res === 200){
-                        body.innerHTML = 'OK'
-                    }
-                    else{
-                        body.innerHTML = 'Error'
-                    }
-                })
+        btnSave.addEventListener('click', () => {
+            updatePost(getIdFromHash(), getValueFromPost()[0], getValueFromPost()[1])
+            .then((res) => {
+                if(res === 200){
+                    setValueToLocalStorage(getValueFromPost()[0], getValueFromPost()[1], getIdFromHash());
+                    body.innerHTML = 'OK';
+                }
+                else{
+                    body.innerHTML = 'Error';
+                }
             })
+        })
+        let btnDelete = document.querySelector('.btnDelete');
+        btnDelete.addEventListener('click', () => {
+            deletePost(getIdFromHash())
+            .then((res) => {
+                if(res === 200){
+                    setValueToLocalStorage(getValueFromPost()[0], getValueFromPost()[1], getIdFromHash());
+                    checkOnePostInLocalStorageForDelete(post);
+                    body.innerHTML = 'OK';
+                }else{
+                    body.innerHTML = 'Error';
+                }
+            })
+        })
     })
 }
 
 export function renderCreatePostForm(){
+    let count = 101;
+    createPostForm();
+    let bodyPost = document.querySelector('.bodyPost');
+    let btnSave = document.querySelector('.btnSave');
+    btnSave.addEventListener('click', () => {
+        createPost(count, getValueFromPost()[0], getValueFromPost()[1])
+        .then((res) => {
+            if(res === 201){
+                count += 1;
+                bodyPost.innerHTML = 'Created';
+            }
+        })
+    })
+}
+
+export function createPostForm(){
     let bodyPost = document.querySelector('.bodyPost');
     bodyPost.innerHTML = '';
     bodyPost.innerHTML = `
@@ -92,13 +122,18 @@ export function createPostEditForm(post){
             <textarea action="" class="titleEdit">${post.title}</textarea>
             <h3 class="editHeading">Edit text</h3>
             <textarea action="" class="textEdit" minlength="20" maxlength="200">${post.body}</textarea>
-            <button type="submit" class="btnSave">Save</button>
+            <div class="btnForEditPost">
+                <button type="submit" class="btnSave">Save</button>
+                <button type="submit" class="btnDelete">Delete</button>
+            </div>
         </div>
     `
 }
 
 
+function deletePostFromLocalStoradge(id){
 
+}
 
 
 
