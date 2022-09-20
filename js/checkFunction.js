@@ -2,6 +2,7 @@
 import {renderPosts, renderCreatePostForm, renderEditPostForm, renderPostView} from './renderCreateDeleteFunction.js';
 import {getParamFromUrl, getPostsFromLocalStorage} from './getFunction.js';
 import {setValueToLocalStorage} from './setFunction.js';
+import {pagination} from './pagination.js';
 
 let select = document.querySelector('.selectList');
 
@@ -17,7 +18,7 @@ export function checkUrl(id){
     //setCountOfPost();
     switch(window.location.hash) {
         case '': 
-            renderPosts(getParamFromUrl()[0], getParamFromUrl()[1]);
+            pagination();
             break;
         case `#vievPost${id()}`:
             renderPostView();
@@ -71,24 +72,10 @@ export function checkOnePostInLocalStorageForDelete(post){
             localStorage.removeItem(key);
         }
     }
+    // todo: добавить опцию DELETED  если пост удален и удаляю его и редирект на общий список постов
+    // todo: добавить кнопку DELETE на общую страницу
 }
 
 
 
-// todo функция ничего не берет а записывает переданные параметры в локалсторадж
-export async function setPostsToLocalStorage(id){
-    let title = document.querySelector('.titleEdit');
-    let body = document.querySelector('.textEdit');
-    
-    let postTitle = title.value;
-    let postBody = body.value;
-
-    let obj = {
-        'id': id,
-        'title': postTitle,
-        'body': postBody,
-    }
-
-    localStorage.setItem(`obj${id}`, JSON.stringify(obj));
-}
 

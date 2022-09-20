@@ -1,6 +1,7 @@
 import {parseRecievedPostsAndUsers, parseRecievedPostAndUser, parseRecievedPost, updatePost, deletePost, createPost} from './api.js';
-import {getIdFromHash, getValueFromPost} from './getFunction.js';
+import {getIdFromHash, getValueFromPost, getParamFromUrl} from './getFunction.js';
 import {setValueToLocalStorage} from './setFunction.js';
+import {setValueSelectBox} from './selectBox.js';
 import {checkPostsInLocalStorage, checkOnePostInLocalStorage, checkOnePostInLocalStorageForDelete} from './checkFunction.js';
 
 export function renderPosts(page = 1, amount = 10){
@@ -16,6 +17,8 @@ export function renderPostView(){
     .then(([post, user]) => {
         checkOnePostInLocalStorage(post);
         createOnePosts(post, user);
+        clearDivElem('.pagination');
+        clearDivElem('.selectBox');
     })
 }
 
@@ -25,6 +28,8 @@ export function renderEditPostForm(){
     .then((post) => {
         checkOnePostInLocalStorage(post);
         createPostEditForm(post);
+        clearDivElem('.pagination');
+        clearDivElem('.selectBox');
         let btnSave = document.querySelector('.btnSave');
         btnSave.addEventListener('click', () => {
             updatePost(getIdFromHash(), getValueFromPost()[0], getValueFromPost()[1])
@@ -51,10 +56,14 @@ export function renderEditPostForm(){
                 }
             })
         })
+        let btnBack = document.querySelector('.btnBack');
+        btnBack.addEventListener('click', backToMainPage);
     })
 }
 
 export function renderCreatePostForm(){
+    clearDivElem('.pagination');
+    clearDivElem('.selectBox');
     let count = 101;
     createPostForm();
     let bodyPost = document.querySelector('.bodyPost');
@@ -68,6 +77,8 @@ export function renderCreatePostForm(){
             }
         })
     })
+    let btnBack = document.querySelector('.btnBack');
+    btnBack.addEventListener('click', backToMainPage);
 }
 
 export function createPostForm(){
@@ -79,7 +90,10 @@ export function createPostForm(){
             <textarea action="" class="titleEdit"></textarea>
             <h3 class="editHeading">Edit text</h3>
             <textarea action="" class="textEdit" minlength="20" maxlength="200"></textarea>
-            <button type="submit" class="btnSave">Save</button>
+            <div class="btnForEditPost">
+                <button type="submit" class="btnSave">Save</button>
+                <button class="btnBack">Back</button>
+            </div>
         </div>
     `
 }
@@ -103,14 +117,15 @@ export function createPosts(posts, users){
 export function createOnePosts(post, user){
     let bodyPost = document.querySelector('.bodyPost');
     bodyPost.innerHTML = '';
-        bodyPost.innerHTML += `
-        <div class="post${user.id}">
-            <p class="postHeading" id=${post.id}><a href="#vievPost${post.id}">Title: ${post.title}</a></p>
-            <p class="postText" id=text${post.id}>Post: ${post.body}</p>
-            <p class="postAuthor" id=author${user.id}>${user.name}</p>
-            <button class="btnEdit" id=edit${post.id}><a href="#post/edit/${post.id}">Edit</a></button>
-        </div>
-        `  
+    bodyPost.innerHTML += `
+    <div class="post${user.id}">
+        <p class="postHeading" id=${post.id}><a href="#vievPost${post.id}">Title: ${post.title}</a></p>
+        <p class="postText" id=text${post.id}>Post: ${post.body}</p>
+        <p class="postAuthor" id=author${user.id}>${user.name}</p>
+        <button class="btnEdit" id=edit${post.id}><a href="#post/edit/${post.id}">Edit</a></button>
+        <button class="btnBack" id=edit${post.id}><a href="">Back</a></button>
+    </div>
+    `  
 }
 
 export function createPostEditForm(post){
@@ -125,13 +140,21 @@ export function createPostEditForm(post){
             <div class="btnForEditPost">
                 <button type="submit" class="btnSave">Save</button>
                 <button type="submit" class="btnDelete">Delete</button>
+                <button type="submit" class="btnBack">Back</button>
             </div>
         </div>
     `
 }
 
+function backToMainPage(){
+    window.history.back()
+}
 
 
+function clearDivElem(elem){
+    let div = document.querySelector(elem);
+    div.innerHTML = '';
+}
 
 
 

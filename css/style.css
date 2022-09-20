@@ -69,12 +69,21 @@ body {
     margin-bottom: 50px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
+.postBtn{
+    display: flex;
+}
 .btnBack{
-    width: 25%;
+    width: 8rem;
+    margin-top: 20px;
+    height: 2rem;
     border: none;
-    background-color: rgb(247, 243, 226);
-    border-radius: 20px;
-    font-weight: bold;
+    border-radius: 25px;
+    background-color: bisque;
+    font-size: 1.17rem;
+    align-items:center;
+    margin-bottom: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+    text-decoration: none;
 }
 .btnPagesAll{
     flex: 1 1 auto;
@@ -86,7 +95,12 @@ body {
 .btnActive{
     font-size: 1.5rem !important;
 }
-.btnPage1{
+.pagination{
+    display: flex;
+    justify-content: space-around;
+}
+.btnPage{
+    margin-inline: 1rem;
     width: 3rem;
     height: 2rem;
     border: none;
@@ -97,7 +111,10 @@ body {
     margin-bottom: 50px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
-.btnPage2{
+.btnPage:hover{
+    font-size: 1.5rem !important;
+}
+.btnPagePrev{
     width: 3rem;
     height: 2rem;
     border: none;
@@ -108,7 +125,11 @@ body {
     margin-bottom: 50px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
-.btnPage3{
+.btnPageContainer{
+    display: flex;
+    justify-content: space-evenly;
+}
+.btnPageNext{
     width: 3rem;
     height: 2rem;
     border: none;
@@ -119,51 +140,6 @@ body {
     margin-bottom: 50px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
-.btnPage4{
-    width: 3rem;
-    height: 2rem;
-    border: none;
-    border-radius: 25px;
-    background-color: bisque;
-    font-size: 1.17rem;
-    align-items:center;
-    margin-bottom: 50px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
-}
-.btnPage5{
-    width: 3rem;
-    height: 2rem;
-    border: none;
-    border-radius: 25px;
-    background-color: bisque;
-    font-size: 1.17rem;
-    align-items:center;
-    margin-bottom: 50px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
-}
-.btnPage6{
-    width: 3rem;
-    height: 2rem;
-    border: none;
-    border-radius: 25px;
-    background-color: bisque;
-    font-size: 1.17rem;
-    align-items:center;
-    margin-bottom: 50px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
-}
-.btnPage7{
-    width: 3rem;
-    height: 2rem;
-    border: none;
-    border-radius: 25px;
-    background-color: bisque;
-    font-size: 1.17rem;
-    align-items:center;
-    margin-bottom: 50px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
-}
-
 
 .postEdit{
     display: grid;
@@ -200,6 +176,7 @@ body {
 }
 .btnDelete{
     width: 8rem;
+    margin-top: 20px;
     height: 2rem;
     border: none;
     border-radius: 25px;
@@ -208,6 +185,9 @@ body {
     align-items:center;
     margin-bottom: 50px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+.btnForEditPost{
+    display: flex;
 }
 .btnEdit{
     width: 8rem;

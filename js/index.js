@@ -1,52 +1,28 @@
 import {getIdFromHash, getParamFromUrl} from './getFunction.js';
 import {renderPosts} from './renderCreateDeleteFunction.js';
 import {firstLoadPage} from './eventHandler.js';
-import {pagination} from './pagination.js';
+import {pagination, createElemInHtml} from './pagination.js';
 import {checkUrl} from './checkFunction.js';
-import {setUrlParamForPage, setMaxLengthForBtn} from './setFunction.js';
+import {setValueSelectBox} from './selectBox.js';
 
 const mainPageUrl = 'http://127.0.0.1:5500';
-let select = document.querySelector('.selectList');
-let btnPage6 = document.querySelector('.btnPage6');
-let btnPage2 = document.querySelector('.btnPage2');
 
-if(!getParamFromUrl()[0] &&!getParamFromUrl()[1] && !window.location.hash){
-    firstLoadPage(mainPageUrl, btnPage2);
+
+if(!getParamFromUrl()[0] && !getParamFromUrl()[1]){
+    firstLoadPage(mainPageUrl);
 }
-
-setMaxLengthForBtn(btnPage6);
-
-renderPosts(getParamFromUrl()[0], getParamFromUrl()[1]);
-
-select.addEventListener('change', () => {
-    if(select.value === 'five'){
-        setUrlParamForPage(mainPageUrl, 1, 5);
-        setMaxLengthForBtn(btnPage6, getParamFromUrl()[1]);
-        renderPosts(getParamFromUrl()[0], getParamFromUrl()[1]);
-        pagination(getParamFromUrl()[0], getParamFromUrl()[1]);
-        
-    }
-    else if(select.value === 'two'){
-        setUrlParamForPage(mainPageUrl, 1, 2);
-        setMaxLengthForBtn(btnPage6, getParamFromUrl()[1]);
-        renderPosts(getParamFromUrl()[0], getParamFromUrl()[1]);
-        pagination(getParamFromUrl()[0], getParamFromUrl()[1]);
-        
-    }
-    else if(select.value === 'ten'){
-        setUrlParamForPage(mainPageUrl, 1, 10)
-        setMaxLengthForBtn(btnPage6, getParamFromUrl()[1]);
-        renderPosts(getParamFromUrl()[0], getParamFromUrl()[1]);
-        pagination(getParamFromUrl()[0], getParamFromUrl()[1]);
-        
-    }
-})
-
+createElemInHtml('div', 'pagination');
+setValueSelectBox();
+pagination();
 window.addEventListener('hashchange', () => checkUrl(getIdFromHash));
 
 
-
-
+// todo: убрать лишние запросы везде
+// todo: повешать событие на элементы
+// todo: убрать пагинацию и селектор на  едит и вью
+// todo: сделать кнопку назад из едит и вью на общий список
+// todo: вместо ОК сделать анимацию на поля зеленого цвета, которая потухает и сообщение об ошибке
+// todo: в  HTML оставить один DIV 
 
 
 

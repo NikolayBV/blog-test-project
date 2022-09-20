@@ -1,4 +1,4 @@
-import {setPostsToLocalStorage} from './checkFunction.js';
+// import {setPostsToLocalStorage} from './checkFunction.js';
 
 
 const baseUrl = 'https://jsonplaceholder.typicode.com';
@@ -103,7 +103,7 @@ export async function parseRecievedPostAndUser(id){
     return [post, user];
 }
 
-export async function parsePostLength(){
+export async function parsePostsLength(){
     let posts = await requestForAllPosts();
     return posts.json();
 }

@@ -4,7 +4,7 @@ export function getParamFromUrl(){
     let url = new URL(window.location.href);
     let paramPage = url.searchParams.get('page');
     let paramAmount = url.searchParams.get('amount');
-    return [paramPage, paramAmount];
+    return [+paramPage, +paramAmount];
 }
 
 export function getIdFromHash(){
