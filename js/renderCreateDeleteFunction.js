@@ -19,6 +19,8 @@ export function renderPostView(){
         createOnePosts(post, user);
         clearDivElem('.pagination');
         clearDivElem('.selectBox');
+        let btnBack = document.querySelector('.btnBack');
+        btnBack.addEventListener('click', backToMainPage);
     })
 }
 
@@ -36,10 +38,10 @@ export function renderEditPostForm(){
             .then((res) => {
                 if(res === 200){
                     setValueToLocalStorage(getValueFromPost()[0], getValueFromPost()[1], getIdFromHash());
-                    body.innerHTML = 'OK';
+                    addAnimation('green');
                 }
                 else{
-                    body.innerHTML = 'Error';
+                    addAnimation('red');
                 }
             })
         })
@@ -157,11 +159,24 @@ function clearDivElem(elem){
 }
 
 
+function addAnimation(color){
+    let title = document.querySelector('.postEdit');
 
+    let background = document.createElement('p');
+    background.className = 'titleOpacity';
 
-
-
-
+    title.append(background);
+    background.style.background = color;
+    background.style.opacity = 1;
+    setInterval(() => {
+        if(background.style.opacity == 0){
+            clearInterval();
+        }
+        else{
+            background.style.opacity -= 0.1;
+        }
+    }, 50)
+}
 
 
 

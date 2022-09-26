@@ -16,7 +16,8 @@ export async function pagination(){
 
 
     renderPosts(getParamFromUrl()[0], getParamFromUrl()[1]);
-
+    setValueSelectBox();
+    
     let btnNext = document.querySelector('.btnPageNext');
     btnNext.addEventListener('click', () => {
         if(getParamFromUrl()[0] >= maxCount){

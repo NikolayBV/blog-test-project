@@ -11,6 +11,9 @@ const mainPageUrl = 'http://127.0.0.1:5500';
 if(!getParamFromUrl()[0] && !getParamFromUrl()[1]){
     firstLoadPage(mainPageUrl);
 }
+else if(window.location.hash){
+    firstLoadPage(mainPageUrl);
+}
 createElemInHtml('div', 'pagination');
 setValueSelectBox();
 pagination();
