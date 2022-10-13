@@ -1,6 +1,4 @@
-import { IPost } from "../models";
-
-export const posts: IPost[] = [
+[
     {
       "userId": 1,
       "id": 1,
