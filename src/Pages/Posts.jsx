@@ -3,7 +3,7 @@ import '../styles/index.css';
 import PostForm from "../components/postForm";
 import {useEffect, useMemo, useState} from "react";
 import {usePosts} from "../hooks/usePosts";
-import {getCountOfPosts, getPosts, getUsers} from "../api/api.js";
+import {getAllPosts, getCountOfPosts, getPosts, getUsers} from "../api/api.js";
 import Pagination from "../components/pagination.jsx";
 
 function Posts() {
@@ -23,9 +23,10 @@ function Posts() {
         (async () => {
             const posts = await getPosts(limit, page)
             const users = await getUsers();
+            const postsCount = await getAllPosts();
             const fullPosts = madeFullPost(posts.data, users);
             setPosts(fullPosts)
-            setPostsCount(posts.count)
+            setPostsCount(postsCount)
         })()
     }, [page])
 
