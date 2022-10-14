@@ -23,6 +23,20 @@ export async function getPostById(id){
 
 export async function getAllPosts(){
     const response = await axios.get('http://localhost:5000/posts/all');
-    return response.data.length;
+    return response.data;
+}
+
+export async function deleteOnePost(id){
+    const response = await axios.delete(`http://localhost:5000/posts/${id}`);
+    return response.status;
+}
+
+export async function changeOnePost(id, title, body){
+    const response = await axios.post(`http://localhost:5000/posts/${id}`, {
+        id: id,
+        title: title,
+        body: body
+    })
+    return response.status;
 }
 //http://localhost:5000/posts

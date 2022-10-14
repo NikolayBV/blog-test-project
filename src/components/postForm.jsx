@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {deletePost} from "../utils/deletePost.js";
+import {deleteOnePost} from "../api/api";
 
 const PostForm = (props) => {
     const [allPosts, setAllPosts] = useState(props.posts)
@@ -23,7 +24,14 @@ const PostForm = (props) => {
                         ><a href={`/post/${post.id}`}>
                             Edit
                         </a></button>
-                        <button onClick={() => deletePost(setAllPosts, allPosts, post.id)} className='postBtnDelete'>Delete</button>
+                        <button onClick={() => {
+                            deletePost(setAllPosts, allPosts, post.id);
+                            deleteOnePost(post.id);
+                            }
+                        } className='postBtnDelete'
+                        >
+                            Delete
+                        </button>
                     </div>
                 </div>
             )}

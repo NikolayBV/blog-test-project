@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import PostForm from "../components/postForm";
 import PostItem from "../components/postItem";
-import {getPostById} from "../api/api";
+import {getAllPosts, getPostById} from "../api/api";
 import {getIdFromUrl} from "../utils/getIdFromUrl";
 
 const OnePost = () => {
@@ -10,10 +9,14 @@ const OnePost = () => {
         const myPost = await getPostById(id)
         setPost(myPost)
     });
+    const [posts, setPosts] = useState(async () => {
+        const allPosts = await getAllPosts();
+        setPosts(allPosts)
+    })
 
     return (
         <div>
-           <PostItem post={post}/>
+           <PostItem post={post} posts={posts}/>
         </div>
     );
 };
