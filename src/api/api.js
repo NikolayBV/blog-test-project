@@ -39,4 +39,13 @@ export async function changeOnePost(id, title, body){
     })
     return response.status;
 }
+
+export async function addOnePost(id, title, body){
+    const response = await axios.post(`http://localhost:5000/posts/add/${id}`, {
+        id: id,
+        title: title,
+        body: body
+    })
+    return response.status;
+}
 //http://localhost:5000/posts

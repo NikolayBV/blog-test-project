@@ -37,7 +37,7 @@ function Posts() {
     return (
         <div className="App">
             <PostForm posts={posts}/>
-            <Pagination count={postsCount/limit} changePage={changePage}/>
+            <Pagination count={Math.ceil(postsCount/limit)} changePage={changePage}/>
         </div>
     );
 }
