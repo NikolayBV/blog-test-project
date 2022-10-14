@@ -22,7 +22,7 @@ export async function getPostById(id){
 }
 
 export async function getAllPosts(){
-    const response = await axios.get('http://localhost:5000/posts');
+    const response = await axios.get('http://localhost:5000/posts/all');
     return response.data.length;
 }
 //http://localhost:5000/posts

@@ -12,6 +12,7 @@ function App() {
       <Routes>
           <Route path='/post/:id' element={<OnePost/>}></Route>
           <Route path='/posts' element={<Posts/>}></Route>
+          <Route path='/' element={<Posts/>}></Route>
       </Routes>
     </BrowserRouter>
   );

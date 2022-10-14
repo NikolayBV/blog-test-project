@@ -25,6 +25,7 @@ function Posts() {
             const users = await getUsers();
             const postsCount = await getAllPosts();
             const fullPosts = madeFullPost(posts.data, users);
+            console.log(postsCount)
             setPosts(fullPosts)
             setPostsCount(postsCount)
         })()
