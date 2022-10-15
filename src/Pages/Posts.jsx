@@ -13,10 +13,15 @@ function Posts() {
     const [posts, setPosts] = useState([]);
     const madeFullPost = (posts, users) => {
         return posts.map((post) => {
-            const user = users.find((user) => post.userId === user.id);
-            const userName = user?.name ? user.name : "anonymus";
-            const newPost = {...post, userName};
-            return newPost;
+            if(post.author){
+                return post;
+            }
+            else{
+                const user = users.find((user) => post.userId === user.id);
+                const userName = user?.name ? user.name : "anonymus";
+                const newPost = {...post, userName};
+                return newPost;
+            }
         })
     };
     useEffect(() => {

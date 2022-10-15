@@ -17,7 +17,7 @@ const PostForm = (props) => {
                 <div className='postForm' key={post.id}>
                     <p className='postTitle'>Title {post.id}: {post.title}</p>
                     <p className='postBody'>{post.body}</p>
-                    <p className='postAuthor'>{post.userName}</p>
+                    <p className='postAuthor'>{post.userName || post.author}</p>
                     <div className='postBtn'>
                         <button
                             className='postBtnEdit'

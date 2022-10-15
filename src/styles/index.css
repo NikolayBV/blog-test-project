@@ -85,6 +85,17 @@ body {
     padding: 16px;
     margin-bottom: 20px;
 }
+.postTextAreaAuthor{
+    width: 15rem;
+    height: 3rem;
+    text-align: center;
+    border: none;
+    border-radius: 25px;
+    background-color: #FFFFFF;
+    font-size: 1.15rem;
+    padding: 16px;
+    margin-bottom: 20px;
+}
 .postTextAreaBtnSave{
     margin-top: 20px;
     width: 8rem;
