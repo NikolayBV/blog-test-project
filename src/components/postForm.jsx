@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {deletePost} from "../utils/deletePost.js";
 import {deleteOnePost} from "../api/api";
+import {Link} from "react-router-dom";
 
 const PostForm = (props) => {
     const [allPosts, setAllPosts] = useState(props.posts)
@@ -21,9 +22,9 @@ const PostForm = (props) => {
                     <div className='postBtn'>
                         <button
                             className='postBtnEdit'
-                        ><a href={`/post/${post.id}`}>
+                        ><Link to={`/posts/${post.id}`}>
                             Edit
-                        </a></button>
+                        </Link></button>
                         <button onClick={() => {
                             deletePost(setAllPosts, allPosts, post.id);
                             deleteOnePost(post.id);

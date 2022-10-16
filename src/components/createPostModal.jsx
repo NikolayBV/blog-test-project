@@ -25,7 +25,7 @@ const CreatePostModal = () => {
             <div className='postBtnEdit'>
                 <button className='postTextAreaBtnSave'
                         onClick={() => {
-                            addOnePost(Date.now(), postTitle, postBody, postAuthor);
+                            addOnePost(postTitle, postBody, postAuthor);
                         }}
                 >
                     Save

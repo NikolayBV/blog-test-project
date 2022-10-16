@@ -1,14 +1,20 @@
 import React from "react";
 import axios from "axios";
 
-export async function getPosts(limit = 10, page = 1){
-    const response = await axios.get('http://localhost:5000/posts', {
-        params: {
-            limit: limit,
-            page: page,
-        }
-    });
-    return {data: response.data, count: response.headers['X-total-count']};
+export async function getPosts(limit = null, page = null){
+    if(!limit && !page){
+        const response = await axios.get('http://localhost:5000/posts');
+        return response.data;
+    }
+    else{
+        const response = await axios.get('http://localhost:5000/posts', {
+            params: {
+                limit: limit,
+                page: page,
+            }
+        });
+        return {data: response.data, count: response.headers['X-total-count']};
+    }
 }
 
 export async function getUsers(){
@@ -32,7 +38,7 @@ export async function deleteOnePost(id){
 }
 
 export async function changeOnePost(id, title, body){
-    const response = await axios.post(`http://localhost:5000/posts/${id}`, {
+    const response = await axios.put(`http://localhost:5000/posts/${id}`, {
         id: id,
         title: title,
         body: body
@@ -40,13 +46,11 @@ export async function changeOnePost(id, title, body){
     return response.status;
 }
 
-export async function addOnePost(id, title, body, author){
-    const response = await axios.post(`http://localhost:5000/posts/add/${id}`, {
-        id: id,
+export async function addOnePost(title, body, author){
+    const response = await axios.put(`http://localhost:5000/create`, {
         title: title,
         body: body,
         author: author
     })
     return response.status;
 }
-//http://localhost:5000/posts

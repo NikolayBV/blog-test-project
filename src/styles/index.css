@@ -27,18 +27,26 @@ body {
 .bottomHeader{
     margin: 0px;
 }
+.headerMenu{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
 #root{
     display: flex;
     justify-content: center;
 }
 .App{
+    display: flex;
+    flex-direction: column;
+}
+.post{
+    margin: auto;
     width: 70%;
     background-color: #FFFFFF;
     border: none;
     border-radius: 15px;
     margin-bottom: 20px;
-}
-.post{
     display: flex;
     flex-direction: column;
     padding: 15px;
