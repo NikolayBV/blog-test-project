@@ -5,6 +5,7 @@ export function getIdFromUrl(){
         if(parseInt(cur)){
             acc += cur;
         }
+        else if(cur == '0') acc+=cur;
         return acc
     }, '')
     return id;
