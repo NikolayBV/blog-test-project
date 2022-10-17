@@ -38,7 +38,7 @@ export async function deleteOnePost(id){
 }
 
 export async function changeOnePost(id, title, body){
-    const response = await axios.put(`http://localhost:5000/posts/${id}`, {
+    const response = await axios.post(`http://localhost:5000/posts/${id}`, {
         id: id,
         title: title,
         body: body

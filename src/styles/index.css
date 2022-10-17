@@ -41,12 +41,11 @@ body {
     flex-direction: column;
 }
 .post{
-    margin: auto;
-    width: 70%;
+    width: 23rem;
     background-color: #FFFFFF;
     border: none;
     border-radius: 15px;
-    margin-bottom: 20px;
+    margin: auto auto 20px;
     display: flex;
     flex-direction: column;
     padding: 15px;
@@ -120,6 +119,7 @@ body {
 .pagination{
     display: flex;
     justify-content: center;
+    margin-bottom: 30px !important;
 }
 .btnPagination{
     margin-right: 5px;
