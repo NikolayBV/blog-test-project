@@ -3,7 +3,7 @@ import PostItem from "../components/postItem";
 import {getAllPosts, getPostById, getPosts} from "../api/api";
 import {getIdFromUrl} from "../utils/getIdFromUrl";
 
-const OnePost = ({posts}) => {
+const OnePost = ({posts, changePost}) => {
     const [post, setPost] = useState( async () => {
         const id = getIdFromUrl()
         const myPost = await getPostById(id)
@@ -11,7 +11,7 @@ const OnePost = ({posts}) => {
     });
     return (
         <div>
-           <PostItem post={post} posts={posts}/>
+           <PostItem post={post} posts={posts} changePost={changePost}/>
         </div>
     );
 };

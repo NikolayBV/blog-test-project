@@ -38,19 +38,29 @@ export async function deleteOnePost(id){
 }
 
 export async function changeOnePost(id, title, body){
-    const response = await axios.post(`http://localhost:5000/posts/${id}`, {
-        id: id,
-        title: title,
-        body: body
-    })
-    return response.status;
+    try{
+        const response = await axios.post(`http://localhost:5000/posts/${id}`, {
+            id: id,
+            title: title,
+            body: body
+        })
+        return response.data;
+    }
+    catch (e){
+        return e;
+    }
 }
 
 export async function addOnePost(title, body, author){
-    const response = await axios.put(`http://localhost:5000/create`, {
-        title: title,
-        body: body,
-        author: author
-    })
-    return response.status;
+    try{
+        const response = await axios.put(`http://localhost:5000/posts`, {
+            title: title,
+            body: body,
+            author: author
+        });
+        return response.data;
+    }
+    catch (e){
+        return e;
+    }
 }

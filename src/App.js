@@ -38,13 +38,34 @@ function App() {
   function changePage(page){
     setPage(page)
   }
+
+  function addNewPost(posts, title, body, author){
+    const addMyPost = {
+      id: Date.now(),
+      title: title,
+      body: body,
+      author: author,
+    }
+    const allPosts = [...posts, addMyPost];
+    setPosts(allPosts)
+  }
+
+  function changePost(posts, res){
+    posts.map((item) => {
+      if(item.id === res.id){
+        item.title = res.title;
+        item.body = res.body;
+      }
+    })
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-          <Route path='/posts/:id' element={<OnePost posts={posts}/>}></Route>
+          <Route path='/posts/:id' element={<OnePost posts={posts} changePost={changePost}/>}></Route>
           <Route path='/posts' element={<Posts posts={posts} postsCount={postsCount} page={page} limit={limit} changePage={changePage}/>}></Route>
           <Route path='/' element={<Posts posts={posts} postsCount={postsCount} page={page} limit={limit} changePage={changePage}/>}></Route>
-          <Route path='/create' element={<AddPost/>}></Route>
+          <Route path='/create' element={<AddPost posts={posts} addNewPost={addNewPost}/>}></Route>
       </Routes>
     </BrowserRouter>
   );

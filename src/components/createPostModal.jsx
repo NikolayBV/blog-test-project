@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {addOnePost, changeOnePost} from "../api/api.js";
 
 
-const CreatePostModal = () => {
+const CreatePostModal = ({posts, addNewPost}) => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
     const [postAuthor, setPostAuthor] = useState('')
@@ -25,7 +25,15 @@ const CreatePostModal = () => {
             <div className='postBtnEdit'>
                 <button className='postTextAreaBtnSave'
                         onClick={() => {
-                            addOnePost(postTitle, postBody, postAuthor);
+                            addOnePost(postTitle, postBody, postAuthor)
+                              // .then(res => {
+                              //   if(res){
+                              //     addNewPost(posts, postTitle, postBody, postAuthor)
+                              //   }
+                              //   else{
+                              //     throw new Error("Error")
+                              //   }
+                              // })
                         }}
                 >
                     Save

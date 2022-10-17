@@ -1,10 +1,10 @@
 import React from 'react';
 import CreatePostModal from "../components/createPostModal.jsx";
 
-const AddPost = () => {
+const AddPost = ({posts, addNewPost}) => {
     return (
         <div>
-            <CreatePostModal/>
+            <CreatePostModal posts={posts} addNewPost={addNewPost}/>
         </div>
     );
 };

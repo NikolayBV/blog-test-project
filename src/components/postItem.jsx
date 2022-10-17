@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {changeOnePost} from "../api/api.js";
 
-const PostItem = ({post, posts}) => {
+const PostItem = ({post, posts, changePost}) => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
     function onChangeTitle(e){
@@ -10,14 +10,7 @@ const PostItem = ({post, posts}) => {
     function onChangeBody(e){
         setPostBody(e.target.value)
     }
-    function changePost(){
-        posts.map((item) => {
-            if(item.id == post.id){
-                item.title = postTitle;
-                item.body = postBody;
-            }
-        })
-    }
+
 
     return (
         <div className='postEditForm'>
@@ -26,8 +19,15 @@ const PostItem = ({post, posts}) => {
             <div className='postBtnEdit'>
                 <button className='postTextAreaBtnSave'
                         onClick={() => {
-                            changePost();
-                            changeOnePost(post.id, postTitle, postBody);
+                            changeOnePost(post.id, postTitle, postBody)
+                              .then(res => {
+                                if(res){
+                                  changePost(posts, res)
+                                }
+                                else{
+                                  throw new Error("Error")
+                                }
+                              })
                         }}
                 >
                     Save
