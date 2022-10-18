@@ -1,4 +1,4 @@
 
-export function deletePost(state, array, id){
-    state(array.filter(p => p.id !== id))
+export function deletePost(setState, array, id){
+    setState(array.filter((p) => {return p.id !== id}))
 }

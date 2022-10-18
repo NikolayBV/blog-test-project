@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {addOnePost, changeOnePost} from "../api/api.js";
+import {addOnePost} from "../api/api.js";
 
 
 const CreatePostModal = ({posts, addNewPost}) => {
@@ -26,6 +26,7 @@ const CreatePostModal = ({posts, addNewPost}) => {
                 <button className='postTextAreaBtnSave'
                         onClick={() => {
                             addOnePost(postTitle, postBody, postAuthor)
+                              .then(res => console.log(res))
                               // .then(res => {
                               //   if(res){
                               //     addNewPost(posts, postTitle, postBody, postAuthor)

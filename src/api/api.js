@@ -2,19 +2,15 @@ import React from "react";
 import axios from "axios";
 
 export async function getPosts(limit = null, page = null){
-    if(!limit && !page){
-        const response = await axios.get('http://localhost:5000/posts');
-        return response.data;
-    }
-    else{
+
         const response = await axios.get('http://localhost:5000/posts', {
             params: {
-                limit: limit,
-                page: page,
+                limit,
+                page,
             }
         });
-        return {data: response.data, count: response.headers['X-total-count']};
-    }
+        return {data: response.data.posts, count: response.data.count};
+
 }
 
 export async function getUsers(){
