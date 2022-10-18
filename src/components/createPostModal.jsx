@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {addOnePost} from "../api/api.js";
+import SelectAuthor from "./selectAuthor.jsx";
 
 
-const CreatePostModal = ({posts, addNewPost}) => {
+const CreatePostModal = ({posts, addNewPost, usersName}) => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
     const [postAuthor, setPostAuthor] = useState('')
@@ -21,20 +22,12 @@ const CreatePostModal = ({posts, addNewPost}) => {
         <div className='postEditForm'>
             <textarea placeholder='Enter title' onChange={onChangeTitle} className='postTextAreaTitle' ></textarea>
             <textarea placeholder='Enter body' onChange={onChangeBody} className='postTextAreaBody'></textarea>
-            <textarea placeholder='Enter author' onChange={onChangeAuthor} className='postTextAreaAuthor'></textarea>
+            <SelectAuthor usersName={usersName} onChangeAuthor={onChangeAuthor}/>
             <div className='postBtnEdit'>
                 <button className='postTextAreaBtnSave'
                         onClick={() => {
                             addOnePost(postTitle, postBody, postAuthor)
-                              .then(res => console.log(res))
-                              // .then(res => {
-                              //   if(res){
-                              //     addNewPost(posts, postTitle, postBody, postAuthor)
-                              //   }
-                              //   else{
-                              //     throw new Error("Error")
-                              //   }
-                              // })
+                              .then(res => console.log(res));
                         }}
                 >
                     Save

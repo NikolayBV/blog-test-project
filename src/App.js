@@ -12,6 +12,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [postsCount, setPostsCount] = useState(0);
   const [posts, setPosts] = useState([]);
+  const [usersName, setUsersName] = useState([]);
   const madeFullPost = (posts, users) => {
     return posts.map((post) => {
       if(post.author){
@@ -29,15 +30,19 @@ function App() {
     (async () => {
       const posts = await getPosts(limit, page)
       const users = await getUsers();
+      const arrayUsers = users.map((user) => {
+          return {id: user.id, name: user.name}
+        }
+      );
       const fullPosts = madeFullPost(posts.data, users);
       setPostsCount(posts.count)
       setPosts(fullPosts)
+      setUsersName(arrayUsers)
     })()
   }, [page])
   function changePage(page){
     setPage(page)
   }
-
   function addNewPost(posts, title, body, author){
     const addMyPost = {
       id: Date.now(),
@@ -64,7 +69,7 @@ function App() {
           <Route path='/posts/:id' element={<OnePost posts={posts} changePost={changePost}/>}></Route>
           <Route path='/posts' element={<Posts posts={posts} postsCount={postsCount} page={page} limit={limit} changePage={changePage} setPosts={setPosts}/>}></Route>
           <Route path='/' element={<Posts posts={posts} postsCount={postsCount} page={page} limit={limit} changePage={changePage} setPosts={setPosts}/>}></Route>
-          <Route path='/create' element={<AddPost posts={posts} addNewPost={addNewPost}/>}></Route>
+          <Route path='/create' element={<AddPost posts={posts} addNewPost={addNewPost} usersName={usersName}/>}></Route>
       </Routes>
     </BrowserRouter>
   );
