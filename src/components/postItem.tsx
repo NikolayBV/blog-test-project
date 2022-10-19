@@ -1,13 +1,20 @@
-import React, {useState} from 'react';
-import {changeOnePost} from "../api/api.js";
+import React, {SetStateAction, useState} from 'react';
+import {changeOnePost} from "../api/api";
+import {IPost} from "../models/models";
 
-const PostItem = ({post, posts, changePost}) => {
+interface Params{
+    post?: IPost,
+    posts?: Array<IPost>,
+    changePost: SetStateAction<IPost>
+}
+
+const PostItem = ({post, posts, changePost}: Params) => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
-    function onChangeTitle(e){
+    function onChangeTitle(e: React.ChangeEvent<HTMLTextAreaElement>){
         setPostTitle(e.target.value)
     }
-    function onChangeBody(e){
+    function onChangeBody(e: React.ChangeEvent<HTMLTextAreaElement>){
         setPostBody(e.target.value)
     }
 

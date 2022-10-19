@@ -1,5 +1,5 @@
 import React from "react";
-import {getPosts, getUsers} from "../api/api";
+import {getPosts, getUsers} from "../api/api.js";
 import {useMemo, useState} from "react";
 
 export function usePost(limit, page, setPosts){

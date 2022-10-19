@@ -1,6 +1,12 @@
-import React from 'react';
+import React, {ChangeEvent, ChangeEventHandler} from 'react';
+import {IUser} from "../models/models";
 
-const SelectAuthor = ({usersName, onChangeAuthor}) => {
+interface ISelectAuthor{
+    usersName: Array<IUser>,
+    onChangeAuthor: ChangeEventHandler
+}
+
+const SelectAuthor = ({usersName, onChangeAuthor}: ISelectAuthor) => {
   return (
     <div>
         <select onChange={onChangeAuthor}>

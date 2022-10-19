@@ -1,5 +1,5 @@
 import React from "react";
-import {getCountOfPosts, getPosts, getUsers} from "../api/api.js";
+import {getCountOfPosts, getPosts, getUsers} from "../api/api.ts";
 import {useMemo, useState} from "react";
 
 export function usePosts(limit, page){

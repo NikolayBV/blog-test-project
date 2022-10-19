@@ -1,9 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {setLengthCount} from "../utils/setLengthCount.js";
+import {setLengthCount} from "../utils/setLengthCount";
 
-const Pagination = ({count, changePage}) => {
+interface IPagination {
+    count: number,
+    changePage: Function
+}
+
+const Pagination = ({count, changePage}: IPagination) => {
     let length = setLengthCount(count)
-    const [postCount, setPostCount] = useState([])
+    const [postCount, setPostCount] = useState<Array<number>>([])
     useEffect(() => {
         setPostCount(length)
     }, [count])

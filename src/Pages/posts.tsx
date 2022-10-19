@@ -1,10 +1,19 @@
 import '../styles/normalize.css';
 import '../styles/index.css';
 import PostForm from "../components/postForm";
-import Pagination from "../components/pagination.jsx";
-import HeaderMenu from "../components/headerMenu.jsx";
+import Pagination from "../components/pagination";
+import HeaderMenu from "../components/headerMenu";
+import {IPost} from "../models/models";
 
-function Posts({limit, page, posts, postsCount, changePage, setPosts}) {
+interface PostsProps{
+    limit: number,
+    posts: Array<IPost>,
+    postsCount: number,
+    changePage: Function,
+    setPosts: Function,
+}
+
+function Posts({limit, posts, postsCount, changePage, setPosts}: PostsProps) {
 
     return (
         <div className="App">

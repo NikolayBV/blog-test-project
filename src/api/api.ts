@@ -1,7 +1,16 @@
 import React from "react";
 import axios from "axios";
+import {IPost, IUser} from "../models/models";
 
-export async function getPosts(limit = null, page = null){
+export interface IGetPosts {
+    posts: Array<IPost>,
+    count: number
+}
+export interface GetPAram{
+    data: IGetPosts
+}
+
+export async function getPosts(limit: number | null, page: number | null): Promise<GetPAram>{
 
         const response = await axios.get('http://localhost:5000/posts', {
             params: {
@@ -9,31 +18,26 @@ export async function getPosts(limit = null, page = null){
                 page,
             }
         });
-        return {data: response.data.posts, count: response.data.count};
+        return {data: response.data, count: response.data.count};
 
 }
 
 export async function getUsers(){
-    const response = await axios.get('http://localhost:5000/users');
+    const response = await axios.get<Array<IUser>>('http://localhost:5000/users');
     return response.data;
 }
 
-export async function getPostById(id){
-    const response = await axios.get(`http://localhost:5000/posts/${id}`);
+export async function getPostById(id: string): Promise<IPost>{
+    const response = await axios.get<IPost>(`http://localhost:5000/posts/${id}`);
     return response.data;
 }
 
-export async function getAllPosts(){
-    const response = await axios.get('http://localhost:5000/posts/all');
-    return response.data;
-}
-
-export async function deleteOnePost(id){
+export async function deleteOnePost(id: number){
     const response = await axios.delete(`http://localhost:5000/posts/${id}`);
     return response.status;
 }
 
-export async function changeOnePost(id, title, body){
+export async function changeOnePost(id: number, title: string, body: string){
     try{
         const response = await axios.post(`http://localhost:5000/posts/${id}`, {
             id: id,
@@ -47,7 +51,7 @@ export async function changeOnePost(id, title, body){
     }
 }
 
-export async function addOnePost(title, body, author){
+export async function addOnePost(title: string, body: string, author: string){
     try{
         const response = await axios.put(`http://localhost:5000/posts`, {
             title: title,

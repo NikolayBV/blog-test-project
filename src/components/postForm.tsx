@@ -1,9 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {deletePost} from "../utils/deletePost.js";
+import {deletePost} from "../utils/deletePost";
 import {deleteOnePost} from "../api/api";
 import {Link} from "react-router-dom";
+import {IPost} from "../models/models";
 
-const PostForm = ({posts, setPosts}) => {
+interface IPostForm{
+    posts: Array<IPost>,
+    setPosts: Function
+}
+
+const PostForm = ({posts, setPosts}: IPostForm) => {
     // const [allPosts, setAllPosts] = useState(props.posts)
     // useEffect(() => {
     //     setAllPosts(props.posts)

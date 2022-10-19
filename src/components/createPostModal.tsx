@@ -1,20 +1,26 @@
 import React, {useState} from 'react';
-import {addOnePost} from "../api/api.js";
-import SelectAuthor from "./selectAuthor.jsx";
+import {addOnePost} from "../api/api";
+import SelectAuthor from "./selectAuthor";
+import {IPost, IUser} from "../models/models";
 
+interface ICreatePostModal{
+    posts: Array<IPost>,
+    addNewPost: Function,
+    usersName: Array<IUser>
+}
 
-const CreatePostModal = ({posts, addNewPost, usersName}) => {
+const CreatePostModal = ({posts, addNewPost, usersName}: ICreatePostModal) => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
     const [postAuthor, setPostAuthor] = useState('')
 
-    function onChangeTitle(e){
+    function onChangeTitle(e: React.ChangeEvent<HTMLTextAreaElement>){
         setPostTitle(e.target.value)
     }
-    function onChangeBody(e){
+    function onChangeBody(e: React.ChangeEvent<HTMLTextAreaElement>){
         setPostBody(e.target.value)
     }
-  function onChangeAuthor(e){
+  function onChangeAuthor(e:React.ChangeEvent<HTMLSelectElement>){
     setPostAuthor(e.target.value)
   }
 
