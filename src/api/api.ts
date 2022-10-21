@@ -6,11 +6,12 @@ export interface IGetPosts {
     posts: Array<IPost>,
     count: number
 }
-export interface GetPAram{
-    data: IGetPosts
+export interface GetParam {
+    data: IGetPosts,
+    count: number
 }
 
-export async function getPosts(limit: number | null, page: number | null): Promise<GetPAram>{
+export async function getPosts(limit: number | null, page: number | null): Promise<GetParam>{
 
         const response = await axios.get('http://localhost:5000/posts', {
             params: {

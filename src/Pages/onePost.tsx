@@ -5,19 +5,20 @@ import {getIdFromUrl} from "../utils/getIdFromUrl";
 import {IPost} from "../models/models";
 
 interface Params{
-    posts?: Array<IPost>,
-    changePost: SetStateAction<IPost>
+    posts: Array<IPost>,
+    changePost: Function,
 }
 
+
 const OnePost = ({posts, changePost}: Params) => {
-    const [post, setPost] = useState<IPost>();
+    const [post, setPost] = useState<IPost>(Object);
     useEffect(()=> {
         (async () => {
             const id = getIdFromUrl()
             const myPost = await getPostById(id)
             setPost(myPost)
         })()
-    })
+    }, [])
     return (
         <div>
            <PostItem post={post} posts={posts} changePost={changePost}/>

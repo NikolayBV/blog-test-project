@@ -1,11 +1,12 @@
 import React, {SetStateAction, useState} from 'react';
 import {changeOnePost} from "../api/api";
 import {IPost} from "../models/models";
+import OnePost from "../pages/onePost";
 
 interface Params{
-    post?: IPost,
+    post: IPost,
     posts?: Array<IPost>,
-    changePost: SetStateAction<IPost>
+    changePost: Function
 }
 
 const PostItem = ({post, posts, changePost}: Params) => {
@@ -17,7 +18,6 @@ const PostItem = ({post, posts, changePost}: Params) => {
     function onChangeBody(e: React.ChangeEvent<HTMLTextAreaElement>){
         setPostBody(e.target.value)
     }
-
 
     return (
         <div className='postEditForm'>

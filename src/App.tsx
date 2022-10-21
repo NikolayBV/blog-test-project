@@ -1,6 +1,6 @@
 import '../src/styles/index.css';
 import '../src/styles/normalize.css';
-import React, {useEffect, useState, FC} from "react";
+import React, {useEffect, useState, FC, SetStateAction} from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import OnePost from "./pages/onePost";
 import Posts from "./pages/posts";
@@ -16,7 +16,6 @@ function App() {
   const [posts, setPosts] = useState<Array<IPost>>([]);
   const [usersName, setUsersName] = useState<Array<IUser>>([]);
   const madeFullPost = (posts: Pick<IGetPosts, 'posts'>, users: Array<IUser>) => {
-    debugger
     return posts.posts.map((post) => {
       if (post.author) {
         return post;
@@ -57,13 +56,16 @@ function App() {
     setPosts(allPosts)
   }
 
-  function changePost(posts: Array<IPost>, res: IPost){
-    posts.map((item) => {
+  function changePost(posts: Array<IPost>, res: IPost): Array<IPost>{
+    posts.map((item): IPost => {
       if(item.id === res.id){
         item.title = res.title;
         item.body = res.body;
+        return item;
       }
+      return item;
     })
+    return posts
   }
 
   return (
