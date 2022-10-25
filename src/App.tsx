@@ -7,6 +7,10 @@ import Posts from "./pages/posts";
 import AddPost from "./pages/addPost";
 import {getPosts, getUsers, IGetPosts} from "./api/api";
 import {IPost, IUser} from "./models/models";
+import {useDispatch, useSelector} from "react-redux";
+import {madeFullPost} from "./utils/madeFullPost";
+import {fetchFullPosts} from "./store/postsSlice";
+import {useAppDispatch, useAppSelector} from "./store/hooks";
 
 
 function App() {
@@ -15,18 +19,7 @@ function App() {
   const [postsCount, setPostsCount] = useState(0);
   const [posts, setPosts] = useState<Array<IPost>>([]);
   const [usersName, setUsersName] = useState<Array<IUser>>([]);
-  const madeFullPost = (posts: Pick<IGetPosts, 'posts'>, users: Array<IUser>) => {
-    return posts.posts.map((post) => {
-      if (post.author) {
-        return post;
-      } else {
-        const user = users.find((user) => post.userId === user.id);
-        const userName = user?.name ? user.name : "anonymus";
-        const newPost = {...post, userName};
-        return newPost;
-      }
-    })
-  };
+
   useEffect(() => {
     (async () => {
       const posts = await getPosts(limit, page)
@@ -67,6 +60,13 @@ function App() {
     })
     return posts
   }
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchFullPosts());
+  }, [dispatch])
+
+  const myPosts = useAppSelector(state => state.posts.posts);
+  console.log(myPosts)
 
   return (
     <BrowserRouter>
