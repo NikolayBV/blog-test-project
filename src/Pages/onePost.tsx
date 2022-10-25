@@ -5,12 +5,11 @@ import {getIdFromUrl} from "../utils/getIdFromUrl";
 import {IPost} from "../models/models";
 
 interface Params{
-    posts: Array<IPost>,
     changePost: Function,
 }
 
 
-const OnePost = ({posts, changePost}: Params) => {
+const OnePost = ({changePost}: Params) => {
     const [post, setPost] = useState<IPost>(Object);
     useEffect(()=> {
         (async () => {
@@ -21,7 +20,7 @@ const OnePost = ({posts, changePost}: Params) => {
     }, [])
     return (
         <div>
-           <PostItem post={post} posts={posts} changePost={changePost}/>
+           <PostItem post={post} changePost={changePost}/>
         </div>
     );
 };

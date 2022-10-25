@@ -4,21 +4,20 @@ import PostForm from "../components/postForm";
 import Pagination from "../components/pagination";
 import HeaderMenu from "../components/headerMenu";
 import {IPost} from "../models/models";
+import {useAppSelector} from "../store/hooks";
 
 interface PostsProps{
-    limit: number,
-    posts: Array<IPost>,
-    postsCount: number,
     changePage: Function,
-    setPosts: Function,
+    limit: number
 }
 
-function Posts({limit, posts, postsCount, changePage, setPosts}: PostsProps) {
+function Posts({changePage, limit}: PostsProps) {
+    const postsCount = useAppSelector(state => state.posts.postsCount);
 
     return (
         <div className="App">
             <HeaderMenu/>
-            <PostForm posts={posts} setPosts={setPosts}/>
+            <PostForm />
             <Pagination count={Math.ceil(postsCount/limit)} changePage={changePage}/>
         </div>
     );

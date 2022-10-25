@@ -2,14 +2,14 @@ import React, {SetStateAction, useState} from 'react';
 import {changeOnePost} from "../api/api";
 import {IPost} from "../models/models";
 import OnePost from "../pages/onePost";
+import {useAppSelector} from "../store/hooks";
 
 interface Params{
     post: IPost,
-    posts?: Array<IPost>,
     changePost: Function
 }
 
-const PostItem = ({post, posts, changePost}: Params) => {
+const PostItem = ({post, changePost}: Params) => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
     function onChangeTitle(e: React.ChangeEvent<HTMLTextAreaElement>){
@@ -18,7 +18,7 @@ const PostItem = ({post, posts, changePost}: Params) => {
     function onChangeBody(e: React.ChangeEvent<HTMLTextAreaElement>){
         setPostBody(e.target.value)
     }
-
+    const posts = useAppSelector(state => state.posts.posts);
     return (
         <div className='postEditForm'>
             <textarea defaultValue={post.title} onChange={onChangeTitle} className='postTextAreaTitle' ></textarea>

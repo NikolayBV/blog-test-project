@@ -30,3 +30,22 @@ export interface IUser{
         "bs"?: string
     }
 }
+
+export interface GetParam{
+    page: number,
+    limit: number
+}
+
+export interface PostsState {
+    posts: Array<IPost>,
+    postsCount: number,
+    usersName: Array<IUser>,
+    loading: boolean,
+    error: null | string
+}
+
+export interface ObjInMainState {
+    posts: Array<IPost>,
+    usersName: Array<IUser>,
+    count: number
+}

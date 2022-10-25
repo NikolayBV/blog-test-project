@@ -3,17 +3,15 @@ import {deletePost} from "../utils/deletePost";
 import {deleteOnePost} from "../api/api";
 import {Link} from "react-router-dom";
 import {IPost} from "../models/models";
+import {useAppSelector} from "../store/hooks";
 
 interface IPostForm{
     posts: Array<IPost>,
     setPosts: Function
 }
 
-const PostForm = ({posts, setPosts}: IPostForm) => {
-    // const [allPosts, setAllPosts] = useState(props.posts)
-    // useEffect(() => {
-    //     setAllPosts(props.posts)
-    // }, [props.posts])
+const PostForm = () => {
+    const posts = useAppSelector(state => state.posts.posts);
 
 
     if(!posts || posts.length === 0) return <h1>Loading...</h1>
@@ -32,8 +30,8 @@ const PostForm = ({posts, setPosts}: IPostForm) => {
                             Edit
                         </Link></button>
                         <button onClick={() => {
-                            deletePost(setPosts, posts, post.id);
-                            deleteOnePost(post.id);
+                            //deletePost(setPosts, posts, post.id);
+                            //deleteOnePost(post.id);
                             }
                         } className='postBtnDelete'
                         >
