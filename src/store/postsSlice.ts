@@ -8,7 +8,7 @@ import {IPost} from "../models/models";
 export const fetchFullPosts = createAsyncThunk<Array<IPost>, undefined, {rejectValue: string}>(
   'posts/fetchFullPosts',
   async function (_, {rejectWithValue}){
-      const posts = await getPosts(10, 1);
+      const posts = await getPosts();
       const users = await getUsers();
       if(!posts && !users){
         return rejectWithValue('Server Error!')

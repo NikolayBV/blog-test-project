@@ -11,7 +11,7 @@ export interface GetParam {
     count: number
 }
 
-export async function getPosts(limit: number | null, page: number | null): Promise<GetParam>{
+export async function getPosts(limit?: number | null, page?: number | null): Promise<GetParam>{
 
         const response = await axios.get('http://localhost:5000/posts', {
             params: {
