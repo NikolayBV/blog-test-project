@@ -1,15 +1,14 @@
 import React, {SetStateAction, useState} from 'react';
 import {changeOnePost} from "../api/api";
 import {IPost} from "../models/models";
-import OnePost from "../pages/onePost";
-import {useAppSelector} from "../store/hooks";
+import {changePost} from "../store/postsSlice";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 
 interface Params{
     post: IPost,
-    changePost: Function
 }
 
-const PostItem = ({post, changePost}: Params) => {
+const PostItem = ({post}: Params) => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
     function onChangeTitle(e: React.ChangeEvent<HTMLTextAreaElement>){
@@ -19,6 +18,7 @@ const PostItem = ({post, changePost}: Params) => {
         setPostBody(e.target.value)
     }
     const posts = useAppSelector(state => state.posts.posts);
+    const dispatch = useAppDispatch();
     return (
         <div className='postEditForm'>
             <textarea defaultValue={post.title} onChange={onChangeTitle} className='postTextAreaTitle' ></textarea>
@@ -26,15 +26,12 @@ const PostItem = ({post, changePost}: Params) => {
             <div className='postBtnEdit'>
                 <button className='postTextAreaBtnSave'
                         onClick={() => {
-                            changeOnePost(post.id, postTitle, postBody)
-                              .then(res => {
-                                if(res){
-                                  changePost(posts, res)
-                                }
-                                else{
-                                  throw new Error("Error")
-                                }
-                              })
+                            const obj = {
+                                id: post.id,
+                                title: postTitle,
+                                body: postBody
+                            }
+                            dispatch(changePost(obj));
                         }}
                 >
                     Save

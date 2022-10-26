@@ -49,3 +49,9 @@ export interface ObjInMainState {
     usersName: Array<IUser>,
     count: number
 }
+export interface AddPost {
+    id?: string;
+    title: string;
+    body: string;
+    author: string;
+}

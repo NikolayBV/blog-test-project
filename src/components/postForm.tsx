@@ -3,7 +3,8 @@ import {deletePost} from "../utils/deletePost";
 import {deleteOnePost} from "../api/api";
 import {Link} from "react-router-dom";
 import {IPost} from "../models/models";
-import {useAppSelector} from "../store/hooks";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
+import {deletePostFromList} from "../store/postsSlice";
 
 interface IPostForm{
     posts: Array<IPost>,
@@ -13,8 +14,8 @@ interface IPostForm{
 const PostForm = () => {
     const posts = useAppSelector(state => state.posts.posts);
 
-
-    if(!posts || posts.length === 0) return <h1>Loading...</h1>
+    const dispatch = useAppDispatch();
+    if(!posts || posts.length === 0) return <h1>Loading...</h1>;
 
     return (
         <div className='post'>
@@ -30,8 +31,7 @@ const PostForm = () => {
                             Edit
                         </Link></button>
                         <button onClick={() => {
-                            //deletePost(setPosts, posts, post.id);
-                            //deleteOnePost(post.id);
+                            dispatch(deletePostFromList(post.id))
                             }
                         } className='postBtnDelete'
                         >

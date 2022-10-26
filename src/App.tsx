@@ -16,7 +16,6 @@ import {useAppDispatch, useAppSelector} from "./store/hooks";
 function App() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
-  const [posts, setPosts] = useState<Array<IPost>>([]);
 
   function changePage(page: number){
     setPage(page)
@@ -45,7 +44,6 @@ function App() {
     return posts
   }
 
-
   const dispatch = useAppDispatch();
   useEffect(() => {
     const obj = {page, limit}
@@ -56,10 +54,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path='/posts/:id' element={<OnePost changePost={changePost}/>}></Route>
+          <Route path='/posts/:id' element={<OnePost/>}></Route>
           <Route path='/posts' element={<Posts changePage={changePage} limit={limit}/>}></Route>
           <Route path='/' element={<Posts changePage={changePage} limit={limit}/>}></Route>
-          {/*<Route path='/create' element={<AddPost posts={posts} addNewPost={addNewPost} usersName={usersName}/>}></Route>*/}
+          <Route path='/create' element={<AddPost />}></Route>
       </Routes>
     </BrowserRouter>
   );

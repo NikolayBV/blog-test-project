@@ -9,7 +9,7 @@ interface Params{
 }
 
 
-const OnePost = ({changePost}: Params) => {
+const OnePost = () => {
     const [post, setPost] = useState<IPost>(Object);
     useEffect(()=> {
         (async () => {
@@ -20,7 +20,7 @@ const OnePost = ({changePost}: Params) => {
     }, [])
     return (
         <div>
-           <PostItem post={post} changePost={changePost}/>
+           <PostItem post={post}/>
         </div>
     );
 };

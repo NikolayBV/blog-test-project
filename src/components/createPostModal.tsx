@@ -2,14 +2,10 @@ import React, {useState} from 'react';
 import {addOnePost} from "../api/api";
 import SelectAuthor from "./selectAuthor";
 import {IPost, IUser} from "../models/models";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
+import {createMyPost} from "../store/postsSlice";
 
-interface ICreatePostModal{
-    posts: Array<IPost>,
-    addNewPost: Function,
-    usersName: Array<IUser>
-}
-
-const CreatePostModal = ({posts, addNewPost, usersName}: ICreatePostModal) => {
+const CreatePostModal = () => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
     const [postAuthor, setPostAuthor] = useState('')
@@ -23,7 +19,8 @@ const CreatePostModal = ({posts, addNewPost, usersName}: ICreatePostModal) => {
   function onChangeAuthor(e:React.ChangeEvent<HTMLSelectElement>){
     setPostAuthor(e.target.value)
   }
-
+    const usersName = useAppSelector(state => state.posts.usersName);
+    const dispatch = useAppDispatch();
     return (
         <div className='postEditForm'>
             <textarea placeholder='Enter title' onChange={onChangeTitle} className='postTextAreaTitle' ></textarea>
@@ -32,8 +29,13 @@ const CreatePostModal = ({posts, addNewPost, usersName}: ICreatePostModal) => {
             <div className='postBtnEdit'>
                 <button className='postTextAreaBtnSave'
                         onClick={() => {
-                            addOnePost(postTitle, postBody, postAuthor)
-                              .then(res => console.log(res));
+                            const obj = {
+                                id: Date.now(),
+                                title: postTitle,
+                                body: postBody,
+                                author: postAuthor
+                            }
+                            dispatch(createMyPost(obj));
                         }}
                 >
                     Save

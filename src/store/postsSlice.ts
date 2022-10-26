@@ -1,7 +1,8 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import {getPosts, getUsers} from "../api/api";
+import {changeOnePost, getPosts, getUsers, deleteOnePost, addOnePost} from "../api/api";
 import {madeFullPost} from "../utils/madeFullPost";
-import {GetParam, IPost, IUser, ObjInMainState, PostsState} from "../models/models";
+import {AddPost, GetParam, IPost, IUser, ObjInMainState, PostsState} from "../models/models";
+import {response} from "express";
 
 
 
@@ -30,10 +31,33 @@ export const fetchFullPosts = createAsyncThunk<ObjInMainState, GetParam, {reject
   }
 );
 
-export const changeOnePost = createAsyncThunk(
+export const changePost = createAsyncThunk<IPost, IPost, {rejectValue: string}>(
     'posts/changeOnePost',
-    async function (post, {rejectWithValue, dispatch}){
+    async function (post, {rejectWithValue}){
+        const postId = post.id;
+        const postTitle = post.title;
+        const postBody = post.body;
+        const response: IPost = await changeOnePost(postId, postTitle, postBody);
+        return response;
+    }
+);
 
+export const deletePostFromList = createAsyncThunk<number, number, {rejectValue: string}>(
+    'posts/deletePost',
+    async function (id,{rejectWithValue}){
+        const response = await deleteOnePost(id);
+        return id;
+    }
+);
+
+export const createMyPost = createAsyncThunk< IPost,IPost, {rejectValue: string}>(
+    'posts/createPost',
+    async function (post, {rejectWithValue}){
+        const postTitle = post.title;
+        const postBody = post.body;
+        const postAuthor = post.author;
+        const response: IPost = await addOnePost(postTitle, postBody, postAuthor!);
+        return post;
     }
 )
 
@@ -69,10 +93,36 @@ const postsSlice = createSlice({
               state.postsCount = action.payload.count;
               state.usersName = action.payload.usersName;
             })
+        .addCase(
+            changePost.fulfilled, (state, action) => {
+                state.posts.map((post) =>{
+                    if(post.id === action.payload.id){
+                        post.title = action.payload.title;
+                        post.body = action.payload.body;
+                        return post;
+                    }
+                    return post;
+                })
+            }
+        )
+        .addCase(
+            deletePostFromList.fulfilled, (state, action) => {
+                state.posts = state.posts.filter((post) =>
+                    post.id !== action.payload
+                );
+                state.postsCount = state.postsCount - 1;
+            }
+        )
+        .addCase(
+            createMyPost.fulfilled, (state, action) => {
+                state.posts = [...state.posts, action.payload]
+            }
+
+        )
     // [fetchFullPosts.rejected]: (state, action) => {},
   }
 });
 
 
-export const {createPost, deletePost, editPost} = postsSlice.actions;
+
 export default postsSlice.reducer;
