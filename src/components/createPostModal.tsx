@@ -20,6 +20,7 @@ const CreatePostModal = () => {
     setPostAuthor(e.target.value)
   }
     const usersName = useAppSelector(state => state.posts.usersName);
+    const postLength = useAppSelector(state => state.posts.postsCount);
     const dispatch = useAppDispatch();
     return (
         <div className='postEditForm'>
@@ -30,7 +31,7 @@ const CreatePostModal = () => {
                 <button className='postTextAreaBtnSave'
                         onClick={() => {
                             const obj = {
-                                id: Date.now(),
+                                id: postLength + 1,
                                 title: postTitle,
                                 body: postBody,
                                 author: postAuthor

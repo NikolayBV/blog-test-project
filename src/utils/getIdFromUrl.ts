@@ -1,6 +1,6 @@
 
 export function getIdFromUrl(): string{
-    let url = window.location.href
+    const url = window.location.href
     let id = url.split('').splice(-5).reduce((acc, cur) => {
         if(parseInt(cur)){
             acc += cur;
