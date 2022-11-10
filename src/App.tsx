@@ -19,36 +19,13 @@ function App() {
 
   function changePage(page: number){
     setPage(page)
-  }
-
-  // function addNewPost(posts: Array<IPost>, title: string, body: string, author: string){
-  //   const addMyPost = {
-  //     id: Date.now(),
-  //     title: title,
-  //     body: body,
-  //     author: author,
-  //   }
-  //   const allPosts = [...posts, addMyPost];
-  //   setPosts(allPosts)
-  // }
-
-  function changePost(posts: Array<IPost>, res: IPost): Array<IPost>{
-    posts.map((item): IPost => {
-      if(item.id === res.id){
-        item.title = res.title;
-        item.body = res.body;
-        return item;
-      }
-      return item;
-    })
-    return posts
-  }
+  };
 
   const dispatch = useAppDispatch();
   useEffect(() => {
     const obj = {page, limit}
     dispatch(fetchFullPosts(obj));
-  }, [page])
+  }, [page]);
 
 
   return (

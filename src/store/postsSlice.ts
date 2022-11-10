@@ -119,7 +119,6 @@ const postsSlice = createSlice({
             }
 
         )
-    // [fetchFullPosts.rejected]: (state, action) => {},
   }
 });
 
