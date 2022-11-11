@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {madeFullPost} from "./utils/madeFullPost";
 import {fetchFullPosts} from "./store/postsSlice";
 import {useAppDispatch, useAppSelector} from "./store/hooks";
+import Authorization from "./pages/authorization";
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
       <Routes>
           <Route path='/posts/:id' element={<OnePost/>}></Route>
           <Route path='/posts' element={<Posts changePage={changePage} limit={limit}/>}></Route>
-          <Route path='/' element={<Posts changePage={changePage} limit={limit}/>}></Route>
+          <Route path='/' element={<Authorization/>}></Route>
           <Route path='/create' element={<AddPost />}></Route>
       </Routes>
     </BrowserRouter>

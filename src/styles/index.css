@@ -2,14 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Roboto;
+    font-style: normal;
 }
 html,
 body {
     background-image: url("./image/IMAGE.png");
     background-size:100%;
     background-repeat: no-repeat;
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
 }
 .header{
     display: flex;
@@ -123,4 +123,21 @@ body {
 }
 .btnPagination{
     margin-right: 5px;
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.authButton {
+    display: flex;
+}
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+}
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root{
+    background-color: #FFFFFF !important;
+    margin-inline: 5px !important;
 }

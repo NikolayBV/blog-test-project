@@ -66,3 +66,30 @@ export async function addOnePost(title: string, body: string, author: string){
         return e;
     }
 }
+
+export async function checkUser(name: string, userName: string, email: string){
+    try {
+        const response = await axios.post(baseUrl + 'user', {
+            name: name,
+            userName: userName,
+            email: email
+        });
+        return response.data;
+    }
+    catch (e){
+        return e;
+    }
+}
+export async function createUser(name: string, userName: string, email: string){
+    try {
+        const response = await axios.post(baseUrl + 'createUser', {
+            name: name,
+            userName: userName,
+            email: email
+        });
+        return response.data;
+    }
+    catch (e){
+        return e;
+    }
+}
