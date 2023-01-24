@@ -1,16 +1,12 @@
 import '../src/styles/index.css';
 import '../src/styles/normalize.css';
-import React, {useEffect, useState, FC, SetStateAction} from "react";
+import React, {useEffect, useState} from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import OnePost from "./pages/onePost";
 import Posts from "./pages/posts";
 import AddPost from "./pages/addPost";
-import {GetParam, getPosts, getUsers, IGetPosts} from "./api/api";
-import {IPost, IUser} from "./models/models";
-import {useDispatch, useSelector} from "react-redux";
-import {madeFullPost} from "./utils/madeFullPost";
 import {fetchFullPosts} from "./store/postsSlice";
-import {useAppDispatch, useAppSelector} from "./store/hooks";
+import {useAppDispatch} from "./store/hooks";
 import Authorization from "./pages/authorization";
 
 
