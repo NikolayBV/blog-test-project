@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {deletePost} from "../utils/deletePost";
-import {deleteOnePost} from "../api/api";
+import React from 'react';
 import {Link} from "react-router-dom";
 import {IPost} from "../models/models";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {deletePostFromList} from "../store/postsSlice";
+import {TransitionGroup, CSSTransition} from "react-transition-group";
 
 interface IPostForm{
     posts: Array<IPost>,
@@ -19,27 +18,35 @@ const PostForm = () => {
 
     return (
         <div className='post'>
-            {posts.map((post, index) =>
-                <div className='postForm' key={post.id}>
-                    <p className='postTitle'>Title {post.id}: {post.title}</p>
-                    <p className='postBody'>{post.body}</p>
-                    <p className='postAuthor'>{post.userName || post.author}</p>
-                    <div className='postBtn'>
-                        <button
-                            className='postBtnEdit'
-                        ><Link to={`/posts/${post.id}`}>
-                            Edit
-                        </Link></button>
-                        <button onClick={() => {
-                            dispatch(deletePostFromList(post.id))
-                            }
-                        } className='postBtnDelete'
-                        >
-                            Delete
-                        </button>
-                    </div>
-                </div>
-            )}
+            <TransitionGroup>
+                {posts.map((post, index) =>
+                    <CSSTransition
+                        key={post.id}
+                        timeout={500}
+                        classNames='transitionItem'
+                    >
+                        <div className='postForm'>
+                            <p className='postTitle'>Title {post.id}: {post.title}</p>
+                            <p className='postBody'>{post.body}</p>
+                            <p className='postAuthor'>{post.userName || post.author}</p>
+                            <div className='postBtn'>
+                                <button
+                                    className='postBtnEdit'
+                                ><Link to={`/posts/${post.id}`}>
+                                    Edit
+                                </Link></button>
+                                <button onClick={() => {
+                                    dispatch(deletePostFromList(post.id))
+                                    }
+                                } className='postBtnDelete'
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </CSSTransition>
+                )}
+            </TransitionGroup>
         </div>
     );
 };
