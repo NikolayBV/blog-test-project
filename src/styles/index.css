@@ -7,7 +7,7 @@
 }
 html,
 body {
-    background-image: url("./image/IMAGE.png");
+    background-color: #869bef;
     background-size:100%;
     background-repeat: no-repeat;
 }
@@ -41,8 +41,7 @@ body {
     flex-direction: column;
 }
 .post{
-    width: 23rem;
-    background-color: #FFFFFF;
+    width: 50%;
     border: none;
     border-radius: 15px;
     margin: auto auto 20px;
