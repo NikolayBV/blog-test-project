@@ -158,3 +158,15 @@ body {
     opacity: 0;
     transition: all 500ms ease-in;
 }
+
+.footerStyle {
+    width: 100%;
+    height: 50px;
+    background-color: #245757;
+}
+
+.footerText {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}

@@ -5,6 +5,7 @@ import Pagination from "../components/pagination";
 import HeaderMenu from "../components/headerMenu";
 import {IPost} from "../models/models";
 import {useAppSelector} from "../store/hooks";
+import Footer from "../components/footer";
 
 interface PostsProps{
     changePage: Function,
@@ -19,6 +20,7 @@ function Posts({changePage, limit}: PostsProps) {
             <HeaderMenu/>
             <PostForm />
             <Pagination count={Math.ceil(postsCount/limit)} changePage={changePage}/>
+            <Footer/>
         </div>
     );
 }
