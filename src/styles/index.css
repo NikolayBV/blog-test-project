@@ -11,11 +11,16 @@ body {
     background-size:100%;
     background-repeat: no-repeat;
 }
+.topHeader {
+    position: sticky;
+    top: 0;
+    background-color: #245757;
+}
 .header{
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-top: 60px;
+    padding-top: 30px;
     color: #FFFFFF;
     margin-bottom: 20px;
 }
@@ -28,9 +33,9 @@ body {
     margin: 0px;
 }
 .headerMenu{
-    margin: auto;
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 #root{
     display: flex;
