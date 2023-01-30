@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {Button, ButtonGroup} from "@mui/material";
 
 const HeaderMenu = () => {
   return (
@@ -9,8 +10,8 @@ const HeaderMenu = () => {
             <h3 className="bottomHeader">WEBFLOW BLOG TEMPLATE</h3>
         </div>
       <div className="headerMenu">
-        <button><Link to="/create">Create new post</Link></button>
-        <button><a>About</a></button>
+          <Button variant="text"><Link to="/create" style={{textDecoration: "none", color: "#000"}}>Create new post</Link></Button>
+          <Button variant="text" style={{color: "#000"}}>About</Button>
       </div>
     </div>
   );

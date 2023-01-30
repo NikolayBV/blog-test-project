@@ -4,6 +4,7 @@ import {IPost} from "../models/models";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {deletePostFromList} from "../store/postsSlice";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
+import {Button} from "@mui/material";
 
 interface IPostForm{
     posts: Array<IPost>,
@@ -30,18 +31,22 @@ const PostForm = () => {
                             <p className='postBody'>{post.body}</p>
                             <p className='postAuthor'>{post.userName || post.author}</p>
                             <div className='postBtn'>
-                                <button
-                                    className='postBtnEdit'
-                                ><Link to={`/posts/${post.id}`}>
+                                <Button
+                                    variant="contained"
+                                    style={{position: "static"}}
+                                ><Link to={`/posts/${post.id}`} style={{textDecoration: "none", color: "#ffffff"}}>
                                     Edit
-                                </Link></button>
-                                <button onClick={() => {
+                                </Link></Button>
+                                <Button
+                                    variant="contained"
+                                    style={{position: "static"}}
+                                    onClick={() => {
                                     dispatch(deletePostFromList(post.id))
                                     }
-                                } className='postBtnDelete'
+                                }
                                 >
                                     Delete
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </CSSTransition>

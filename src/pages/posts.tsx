@@ -1,7 +1,7 @@
 import '../styles/normalize.css';
 import '../styles/index.css';
 import PostForm from "../components/postForm";
-import Pagination from "../components/pagination";
+import MyPagination from "../components/myPagination";
 import HeaderMenu from "../components/headerMenu";
 import {IPost} from "../models/models";
 import {useAppSelector} from "../store/hooks";
@@ -19,7 +19,7 @@ function Posts({changePage, limit}: PostsProps) {
         <div className="App">
             <HeaderMenu/>
             <PostForm />
-            <Pagination count={Math.ceil(postsCount/limit)} changePage={changePage}/>
+            <MyPagination count={Math.ceil(postsCount/limit)} changePage={changePage}/>
             <Footer/>
         </div>
     );
