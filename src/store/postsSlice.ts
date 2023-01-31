@@ -9,9 +9,7 @@ import {response} from "express";
 export const fetchFullPosts = createAsyncThunk<ObjInMainState, GetParam, {rejectValue: string}>(
   'posts/fetchFullPosts',
   async function (param, {rejectWithValue}){
-      const page = param.page;
-      const limit = param.limit;
-      const posts = await getPosts(limit, page);
+      const posts = await getPosts();
       const users = await getUsers();
       const usersName = users.map((user) => {
           return {id: user.id, name: user.name}
@@ -70,14 +68,13 @@ const initialState: PostsState = {
     error: null
 }
 
+
 const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    createPost(state, action){
-    },
-    deletePost(state, action){},
-    editPost(state, action){}
+      filterPost: (state, action) =>  {
+      }
   },
   extraReducers: (builder) => {
     builder
@@ -123,5 +120,5 @@ const postsSlice = createSlice({
 });
 
 
-
+export const { filterPost } = postsSlice.actions;
 export default postsSlice.reducer;

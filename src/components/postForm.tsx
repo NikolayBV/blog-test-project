@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
-import {IPost} from "../models/models";
-import {useAppDispatch} from "../store/hooks";
-import {deletePostFromList, fetchFullPosts} from "../store/postsSlice";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
+import {deletePostFromList, fetchFullPosts, filterPost} from "../store/postsSlice";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {Button} from "@mui/material";
+import {IPost} from "../models/models";
 
 
 const PostForm = () => {
@@ -12,17 +12,24 @@ const PostForm = () => {
     const [page, setPage] = useState(1);
     const dispatch = useAppDispatch();
     const [isFetch, setIsFetch] = useState(true);
+    const [allPost, setAllPost] = useState(Array<IPost>);
     const [posts, setPosts] = useState(Array<IPost>);
 
     useEffect(() => {
-        if(isFetch) {
-            dispatch(fetchFullPosts({page, limit}))
-                .then((res) => {
+        dispatch(fetchFullPosts({page, limit}))
+            .then((res) => {
                 // @ts-ignore
-                setPosts([...posts, ...res.payload.posts]);
-                setPage(prevState => prevState + 1);
-            })
-                .finally(() => setIsFetch(false))
+                setAllPost(res.payload.posts);
+                // @ts-ignore
+                setPosts(res.payload.posts.filter(item => item.id <= limit));
+            });
+    }, [])
+
+    useEffect(() => {
+        if(isFetch) {
+            setPosts([...posts, ...allPost.filter(item => item.id <= limit)]);
+            setLimit(prevState => prevState + 10);
+            setIsFetch(false);
         }
     }, [isFetch])
 
