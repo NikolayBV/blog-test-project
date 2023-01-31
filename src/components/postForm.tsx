@@ -1,22 +1,43 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {IPost} from "../models/models";
-import {useAppDispatch, useAppSelector} from "../store/hooks";
-import {deletePostFromList} from "../store/postsSlice";
+import {useAppDispatch} from "../store/hooks";
+import {deletePostFromList, fetchFullPosts} from "../store/postsSlice";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {Button} from "@mui/material";
 
-interface IPostForm{
-    posts: Array<IPost>,
-    setPosts: Function
-}
 
 const PostForm = () => {
-    const posts = useAppSelector(state => state.posts.posts);
-
+    const [limit, setLimit] = useState(10);
+    const [page, setPage] = useState(1);
     const dispatch = useAppDispatch();
-    if(!posts || posts.length === 0) return <h1>Loading...</h1>;
+    const [isFetch, setIsFetch] = useState(true);
+    const [posts, setPosts] = useState(Array<IPost>);
 
+    useEffect(() => {
+        if(isFetch) {
+            dispatch(fetchFullPosts({page, limit}))
+                .then((res) => {
+                // @ts-ignore
+                setPosts([...posts, ...res.payload.posts]);
+                setPage(prevState => prevState + 1);
+            })
+                .finally(() => setIsFetch(false))
+        }
+    }, [isFetch])
+
+    useEffect(() => {
+        document.addEventListener("scroll", scrollHandler);
+        return function () {
+            document.removeEventListener("scroll", scrollHandler);
+        }
+    }, [])
+
+    const scrollHandler = (e: any) => {
+        if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
+            setIsFetch(true);
+        }
+    }
     return (
         <div className='post'>
             <TransitionGroup>
