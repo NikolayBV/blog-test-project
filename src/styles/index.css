@@ -175,3 +175,7 @@ body {
     justify-content: center;
     margin-top: 15px;
 }
+
+.sideMenuHidden {
+    display: none;
+}
