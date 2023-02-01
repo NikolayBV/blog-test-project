@@ -1,18 +1,20 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import {Button, ButtonGroup} from "@mui/material";
+import {AppBar, Toolbar, IconButton, Typography} from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
 
 const HeaderMenu = () => {
   return (
     <div className="topHeader">
-        <div className="header">
-            <h1 className="mainHeader">EXPLORER</h1>
-            <h3 className="bottomHeader">WEBFLOW BLOG TEMPLATE</h3>
-        </div>
-      <div className="headerMenu">
-          <Button variant="text"><Link to="/create" style={{textDecoration: "none", color: "#000"}}>Create new post</Link></Button>
-          <Button variant="text" style={{color: "#000"}}>About</Button>
-      </div>
+        <AppBar position="static">
+            <Toolbar variant="dense">
+                <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+                    <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" color="inherit" component="div">
+                    My blog
+                </Typography>
+            </Toolbar>
+        </AppBar>
     </div>
   );
 };

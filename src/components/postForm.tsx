@@ -34,7 +34,7 @@ const PostForm = () => {
     }, [])
 
     const scrollHandler = (e: any) => {
-        if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
+        if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150) {
             setIsFetch(true);
         }
     }
