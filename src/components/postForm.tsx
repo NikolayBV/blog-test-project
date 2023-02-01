@@ -10,6 +10,7 @@ import {IPost} from "../models/models";
 const PostForm = () => {
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
+    const postCount = useAppSelector(state => state.posts.posts.length);
     const dispatch = useAppDispatch();
     const [isFetch, setIsFetch] = useState(true);
     const [allPost, setAllPost] = useState(Array<IPost>);
@@ -30,6 +31,10 @@ const PostForm = () => {
             setPosts([...posts, ...allPost.filter(item => item.id <= limit)]);
             setLimit(prevState => prevState + 10);
             setIsFetch(false);
+            if(limit > postCount) {
+                return;
+            }
+            console.log(limit);
         }
     }, [isFetch])
 

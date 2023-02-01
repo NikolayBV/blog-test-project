@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {IPost, IUser} from "../models/models";
-const baseUrl = 'http://localhost:8080/';
+const baseUrl = 'http://localhost:8000/';
 
 export interface IGetPosts {
     posts: Array<IPost>,
