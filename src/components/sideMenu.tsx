@@ -9,9 +9,9 @@ interface MenuProp {
 const SideMenu = ({menuActive, setMenuActive}: MenuProp) => {
     return (
         <div className={menuActive ? "sideMenu" : "sideMenuHidden"}>
-            <ul>
-                <li>About</li>
-                <li><Link to='/create'>Create new post</Link></li>
+            <ul className="menuUl">
+                <li className="menuLi">About</li>
+                <li className="menuLi"><Link to='/create' style={{textDecoration: "none", color: "#FFFFFF"}}>Create new post</Link></li>
             </ul>
         </div>
     );
